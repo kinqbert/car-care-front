@@ -16,17 +16,19 @@ export default function LoginPage() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    const response = await login(
-      email?.toString() || "",
-      password?.toString() || ""
-    );
+    try {
+      const response = await login(
+        email?.toString() || "",
+        password?.toString() || ""
+      );
 
-    console.log(response);
-
-    if (response.ok) {
-      localStorage.setItem("token", response.token);
       setIsAuth(true);
+
+      localStorage.setItem("refresh-token", response.refreshToken);
+      localStorage.setItem("access-token", response.accessToken);
       router.push("/dashboard");
+    } catch {
+      console.error("Login failed");
     }
   };
 

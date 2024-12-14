@@ -1,6 +1,14 @@
 import API from "../api";
 import { API_ROUTES } from "../routes";
 
+export const register = async (email: string, password: string) =>
+  (
+    await API.post(API_ROUTES.AUTH.REGISTER, {
+      email,
+      password,
+    })
+  ).data;
+
 export const login = async (email: string, password: string) =>
   (
     await API.post(API_ROUTES.AUTH.LOGIN, {
