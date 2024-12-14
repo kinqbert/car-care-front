@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUserStore } from "../../../store/useUserStore";
 import { CarWithOwnerDetails } from "../../../types/Cars";
-import { getAllCars } from "../../../api/cars";
+import { getAllCars, purchaseCar } from "../../../api/cars";
 
 export const VehiclesPageContent = () => {
   const userId = useUserStore((state) => state.id);
@@ -15,6 +15,14 @@ export const VehiclesPageContent = () => {
     fetchData();
   }, []);
 
+  const handlePurchase = async (carId: string) => {
+    await purchaseCar(carId);
+
+    const carsResponse = await getAllCars();
+
+    setCurrentCars(carsResponse);
+  };
+
   return (
     <>
       <h1>Dashboardf</h1>
@@ -25,7 +33,7 @@ export const VehiclesPageContent = () => {
               {car.make}, {car.owner.email}
             </p>
             {car.isPurchaseAvailable && car.ownerId !== userId && (
-              <button>Purchase</button>
+              <button onClick={() => handlePurchase(car._id)}>Purchase</button>
             )}
           </li>
         ))}

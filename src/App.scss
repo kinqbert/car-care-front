@@ -1,0 +1,7 @@
+@import "./styles/colors.scss";
+@import "./styles/reset.scss";
+
+html {
+  color: $main-white;
+  font-family: "DM Sans", sans-serif;
+}

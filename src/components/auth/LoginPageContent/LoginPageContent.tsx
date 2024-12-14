@@ -19,7 +19,7 @@ export default function LoginPageContent() {
 
       localStorage.setItem("refresh-token", response.refreshToken);
       localStorage.setItem("access-token", response.accessToken);
-      navigate("/dashboard"); // Redirect to the dashboard
+      navigate("/garage"); // Redirect to the dashboard
     } catch (error) {
       console.error("Login failed", error);
     }

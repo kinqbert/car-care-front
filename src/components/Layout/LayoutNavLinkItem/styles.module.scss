@@ -1,0 +1,27 @@
+@import "../../../styles/colors.scss";
+
+.layoutNavLink {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding-inline: 20px;
+  gap: 16px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: color 0.3s;
+
+  &:hover {
+    color: $accent-pink;
+  }
+
+  &__active {
+    color: $accent-pink;
+  }
+}
+
+.layoutNavLinkIcon {
+  width: 16px;
+  height: 16px;
+}

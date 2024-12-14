@@ -6,7 +6,7 @@ export const API_ROUTES = {
   CARS: {
     GET_USER_CARS: "/api/user_cars",
     GET_ALL_CARS: "/api/cars",
-    PURCHASE: "/api/:id/purchase",
+    PURCHASE: (id: string) => `/api/${id || ""}/purchase`,
   },
   USER: {
     GET_USER: "/api/user",
