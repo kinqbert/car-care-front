@@ -1,18 +1,9 @@
-import { AuthState } from "@/types/Auth";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { AuthState } from "../types/Auth";
 
-export const useAuthStore = create(
-  persist<AuthState>(
-    (set) => ({
-      isAuth: false,
-      setIsAuth: (data: boolean) => {
-        set({ isAuth: data });
-      },
-    }),
-    {
-      name: "auth",
-      storage: createJSONStorage(() => localStorage),
-    }
-  )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+  isAuth: false,
+  setIsAuth: (data: boolean) => {
+    set({ isAuth: data });
+  },
+}));

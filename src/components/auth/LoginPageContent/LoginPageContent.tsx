@@ -1,15 +1,10 @@
-"use client";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../../api/auth";
 
-import { login } from "@/api/auth";
-import { useAuthStore } from "@/store/useAuthStore";
-import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
+export default function LoginPageContent() {
+  const navigate = useNavigate();
 
-export default function LoginPage() {
-  const router = useRouter();
-  const setIsAuth = useAuthStore((state) => state.setIsAuth);
-
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
@@ -22,13 +17,11 @@ export default function LoginPage() {
         password?.toString() || ""
       );
 
-      setIsAuth(true);
-
       localStorage.setItem("refresh-token", response.refreshToken);
       localStorage.setItem("access-token", response.accessToken);
-      router.push("/dashboard");
-    } catch {
-      console.error("Login failed");
+      navigate("/dashboard"); // Redirect to the dashboard
+    } catch (error) {
+      console.error("Login failed", error);
     }
   };
 

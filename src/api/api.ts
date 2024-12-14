@@ -1,7 +1,8 @@
 import axios, { AxiosError } from "axios";
+import { CONFIG } from "../constants/config";
 
 const API = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: CONFIG.VITE_API_URL,
 });
 
 API.interceptors.request.use(
@@ -23,7 +24,16 @@ API.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
+
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
       const refreshTokenFromStorage = localStorage.getItem("refresh-token");
 
