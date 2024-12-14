@@ -13,10 +13,10 @@ import { LayoutNavLinkItem } from "./LayoutNavLinkItem";
 import { useUserStore } from "../../store/useUserStore";
 
 export const Layout = () => {
-  const userName = "El Gatito"; //useUserStore((state) => state.name);
+  const userName = useUserStore((state) => state.userName);
   const userImageUrl =
     "https://i.pinimg.com/originals/3e/48/6f/3e486fc989e7cf87e748b750692d86c9.jpg"; //useUserStore((state) => state.imageUrl);
-  const vehiclesSold = 0; //useUserStore((state) => state.vehiclesSold);
+  const vehiclesSold = useUserStore((state) => state.vehiclesSold);
   const vehiclesOwned = useUserStore((state) => state.vehiclesOwned);
 
   return (

@@ -1,0 +1,28 @@
+@use "../../../../styles/colors.scss" as *;
+
+.carInfoItem {
+  width: 100%;
+  height: 36px;
+  padding: 5px;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  border-radius: 5px;
+  background-color: $elements-neutral-grey;
+}
+
+.iconWrapper {
+  height: 26px;
+  width: 26px;
+  padding: 6px;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+}

@@ -1,0 +1,34 @@
+@use "../../../styles/colors.scss" as *;
+
+.button {
+  width: 132px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 5px;
+  border: none;
+  outline: none;
+
+  background-color: $main-white;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($color: $main-white, $alpha: 0.85);
+  }
+
+  &__outlined {
+    color: $main-white;
+    background-color: transparent;
+    border: 1px solid $lighter-gray;
+
+    &:hover {
+      background-color: rgba($color: $main-white, $alpha: 0.1);
+    }
+  }
+}

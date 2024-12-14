@@ -1,5 +1,5 @@
-@import "./styles/colors.scss";
-@import "./styles/reset.scss";
+@use "./styles/colors.scss" as *;
+@use "./styles/reset.scss" as *;
 
 html {
   color: $main-white;

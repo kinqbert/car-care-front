@@ -6,6 +6,8 @@ export interface User {
 export interface UserState {
   email: string;
   id: string;
+  userName: string;
   vehiclesOwned: number;
+  vehiclesSold: number;
   setUser: (data: User) => void;
 }
