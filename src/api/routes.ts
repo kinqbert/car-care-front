@@ -16,5 +16,6 @@ export const API_ROUTES = {
     GET_USER: "/api/user",
     GET_USERS: "/api/users",
     CHECK_EMAIL: "/api/check_email",
+    UPDATE: "/api/user/update",
   },
 };

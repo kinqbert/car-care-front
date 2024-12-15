@@ -63,26 +63,6 @@ export const AddVehiclePageContent = () => {
     (make) => make.name === vehicleMakeValue
   );
 
-  const handleCheckImage = () => {
-    if (vehicleImageValue.trim().endsWith(".svg")) {
-      return setVehicleImageError(
-        "SVG images are not supported. Please use PNG or JPG."
-      );
-    }
-
-    if (vehicleImageValue.trim()) {
-      imageExists(vehicleImageValue).then((result) => {
-        if (!result) {
-          setVehicleImageError("Image does not exist.");
-        } else {
-          setVehicleImageError("");
-        }
-      });
-    } else {
-      setVehicleImageError("Please provide an image URL.");
-    }
-  };
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let isError = false;
@@ -204,7 +184,6 @@ export const AddVehiclePageContent = () => {
             onChange={setVehicleImageValue}
             error={vehicleImageError}
           />
-          <Button title="Check image" onClick={handleCheckImage} />
         </div>
         <NumberInput
           label="Year"

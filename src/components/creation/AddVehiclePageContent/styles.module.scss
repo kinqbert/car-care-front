@@ -6,17 +6,10 @@
 }
 
 .header {
-  text-align: center;
   height: 72px;
 
   font-size: 40px;
   font-weight: 700;
-}
-
-.usersList {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .form {
@@ -56,4 +49,9 @@
 
   object-fit: contain;
   border: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
 }

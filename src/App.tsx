@@ -11,6 +11,7 @@ import { UsersPage } from "./pages/UsersPage";
 import { AddVehiclePage } from "./pages/AddVehiclePage";
 
 import "./App.scss";
+import { EditUserPage } from "./pages/EditUserPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/repairs" element={<RepairsPage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/add-vehicle" element={<AddVehiclePage />} />
+          <Route path="/edit-user" element={<EditUserPage />} />
         </Route>
       </Routes>
     </Router>

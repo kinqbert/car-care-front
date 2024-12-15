@@ -13,6 +13,9 @@ export const useUserStore = create<UserState>((set, get) => ({
   setUser: (data) => {
     set({ ...data });
   },
+  setUserPartial: (data) => {
+    set((state) => ({ ...state, ...data }));
+  },
   clearUser: () => {
     set({
       email: "",

@@ -12,6 +12,7 @@ export interface UserState extends User {
   vehiclesSold: number;
   incrementVehiclesOwned: () => void;
   setUser: (data: User) => void;
+  setUserPartial: (data: Partial<User>) => void;
   clearUser: () => void;
   getUserFullName: () => string;
 }
@@ -19,6 +20,13 @@ export interface UserState extends User {
 export interface UserRegisterData {
   email: string;
   password: string;
+  name: string;
+  surname: string;
+  licenseNumber: string;
+  avatarUrl: string;
+}
+
+export interface UserUpdateData {
   name: string;
   surname: string;
   licenseNumber: string;

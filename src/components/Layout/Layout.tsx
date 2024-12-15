@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 import { LogoWithText } from "../../assets/svg/logo";
@@ -43,11 +43,13 @@ export const Layout = () => {
             />
           </div>
           <div className={styles.userInfo}>
-            <img
-              className={styles.userImage}
-              src={avatarUrl}
-              alt="User image"
-            />
+            <Link to="/edit-user">
+              <img
+                className={styles.userImage}
+                src={avatarUrl}
+                alt="User image"
+              />
+            </Link>
             <span className={styles.userName}>{surname + " " + name}</span>
             <div className={styles.userInfoItems}>
               <div className={styles.userInfoItem}>
