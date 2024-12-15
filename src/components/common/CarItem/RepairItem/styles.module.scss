@@ -38,5 +38,26 @@
 .text {
   font-size: 12px;
   font-weight: 300;
-  opacity: 0.75;
+  opacity: 0.8;
+}
+
+.iconText {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.highSeverityCarInfo {
+  background-color: rgba($color: $red-error, $alpha: 0.3);
+}
+
+.highSeverityIconWrapper {
+  background-color: rgba($color: $red-error, $alpha: 0.6);
+}
+
+.mediumSeverityCarInfo {
+  background-color: rgba($color: $yellow-warning, $alpha: 0.3);
+}
+
+.mediumSeverityIconWrapper {
+  background-color: rgba($color: $yellow-warning, $alpha: 0.6);
 }

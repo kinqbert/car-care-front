@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
-import { Car } from "../../../types/Cars";
+import { useEffect } from "react";
 import { getUserCars } from "../../../api/cars";
 import { CarItem } from "../../common/CarItem";
 
 import styles from "./styles.module.scss";
 import { useUserStore } from "../../../store/useUserStore";
+import { useCarsStore } from "../../../store/useCarsStore";
 
 export const GaragePageContent = () => {
   const userName = useUserStore((state) => state.userName);
-  const [currentCars, setCurrentCars] = useState<Car[]>([]);
+  const currentCars = useCarsStore((state) => state.userCars);
+  const setUserCars = useCarsStore((state) => state.setUserCars);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getUserCars();
-      setCurrentCars(response);
+      setUserCars(response);
     };
     fetchData();
   }, []);

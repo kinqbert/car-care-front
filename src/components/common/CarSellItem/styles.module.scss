@@ -1,0 +1,92 @@
+@use "../../../styles/colors.scss" as *;
+
+.carSellItem {
+  padding: 20px;
+  border-radius: 5px;
+
+  background-color: $light-gray;
+}
+
+.header {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.carInfo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.headerTextContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.make {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.model {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.logoImageWrapper {
+  width: 50px;
+  height: 50px;
+
+  padding: 10px;
+  border-radius: 5px;
+
+  background-color: $elements-neutral-grey;
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 160px;
+
+  padding-inline: 50px;
+
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.carImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.footer {
+  width: 100%;
+
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 700;
+}

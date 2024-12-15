@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import { useUserStore } from "../../../store/useUserStore";
-import { CarWithOwnerDetails } from "../../../types/Cars";
-import { getAllCars, purchaseCar } from "../../../api/cars";
+import { useEffect } from "react";
+import { getAllCars } from "../../../api/cars";
+
+import styles from "./styles.module.scss";
+import { useCarsStore } from "../../../store/useCarsStore";
+import { CarSellItem } from "../../common/CarSellItem";
 
 export const VehiclesPageContent = () => {
-  const userId = useUserStore((state) => state.id);
-  const [currentCars, setCurrentCars] = useState<CarWithOwnerDetails[]>([]);
+  const currentCars = useCarsStore((state) => state.allCars);
+  const setCurrentCars = useCarsStore((state) => state.setAllCars);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,29 +17,17 @@ export const VehiclesPageContent = () => {
     fetchData();
   }, []);
 
-  const handlePurchase = async (carId: string) => {
-    await purchaseCar(carId);
-
-    const carsResponse = await getAllCars();
-
-    setCurrentCars(carsResponse);
-  };
-
   return (
-    <>
-      <h1>Dashboardf</h1>
-      <ul>
+    <div className={styles.container}>
+      <h1 className={styles.header}>Vehicles for sale</h1>
+      <ul className={styles.carsList}>
         {currentCars.map((car) => (
-          <li key={car._id}>
-            <p>
-              {car.make}, {car.owner.email}
-            </p>
-            {car.isPurchaseAvailable && car.ownerId !== userId && (
-              <button onClick={() => handlePurchase(car._id)}>Purchase</button>
-            )}
-          </li>
+          <CarSellItem key={car._id} car={car} />
         ))}
       </ul>
-    </>
+      {currentCars.length === 0 && (
+        <p className={styles.noCarsMessage}>There are no cars available</p>
+      )}
+    </div>
   );
 };

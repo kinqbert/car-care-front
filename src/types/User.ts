@@ -9,5 +9,7 @@ export interface UserState {
   userName: string;
   vehiclesOwned: number;
   vehiclesSold: number;
+  incrementVehiclesOwned: () => void;
   setUser: (data: User) => void;
+  clearUser: () => void;
 }

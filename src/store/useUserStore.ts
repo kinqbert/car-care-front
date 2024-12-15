@@ -10,4 +10,10 @@ export const useUserStore = create<UserState>((set) => ({
   setUser: (data) => {
     set({ ...data });
   },
+  clearUser: () => {
+    set({ email: "", id: "", userName: "", vehiclesOwned: 0, vehiclesSold: 0 });
+  },
+  incrementVehiclesOwned: () => {
+    set((state) => ({ vehiclesOwned: state.vehiclesOwned + 1 }));
+  },
 }));

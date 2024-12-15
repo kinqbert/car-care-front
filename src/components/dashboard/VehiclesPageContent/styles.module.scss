@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  padding: 20px 20px 0 20px;
+}
+
+.header {
+  text-align: center;
+  height: 72px;
+
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.carsList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.noCarsMessage {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 20px;
+  opacity: 0.5;
+}

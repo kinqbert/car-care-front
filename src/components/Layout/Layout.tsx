@@ -11,8 +11,22 @@ import {
 } from "../../assets/svg";
 import { LayoutNavLinkItem } from "./LayoutNavLinkItem";
 import { useUserStore } from "../../store/useUserStore";
+import { useAuthStore } from "../../store/useAuthStore";
+import { getCurrentUser } from "../../api/user";
+import { useEffect } from "react";
 
 export const Layout = () => {
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const setUser = useUserStore((state) => state.setUser);
+
+  useEffect(() => {
+    if (isAuth) {
+      getCurrentUser().then((user) => {
+        setUser(user);
+      });
+    }
+  }, []);
+
   const userName = useUserStore((state) => state.userName);
   const userImageUrl =
     "https://i.pinimg.com/originals/3e/48/6f/3e486fc989e7cf87e748b750692d86c9.jpg"; //useUserStore((state) => state.imageUrl);
