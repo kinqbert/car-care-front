@@ -1,0 +1,26 @@
+@use "../../../styles/colors.scss" as *;
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputLabel {
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 5px;
+  opacity: 0.5;
+}
+
+.inputField {
+  padding: 10px;
+  color: $main-white;
+  border: 1px solid $lighter-gray;
+  background-color: $light-gray;
+  border-radius: 5px;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+  }
+}

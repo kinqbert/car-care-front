@@ -7,7 +7,7 @@ import { useUserStore } from "../../../store/useUserStore";
 import { useCarsStore } from "../../../store/useCarsStore";
 
 export const RepairsPageContent = () => {
-  const userName = useUserStore((state) => state.userName);
+  const getUserFullName = useUserStore((state) => state.getUserFullName);
   const currentCars = useCarsStore((state) => state.userCars);
   const setUserCars = useCarsStore((state) => state.setUserCars);
 
@@ -21,12 +21,15 @@ export const RepairsPageContent = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Garage of {userName}</h1>
+      <h1 className={styles.header}>Garage of {getUserFullName()}</h1>
       <ul className={styles.carsList}>
         {currentCars.map((car) => (
           <CarItem key={car._id} car={car} showRepairs={true} />
         ))}
       </ul>
+      {currentCars.length === 0 && (
+        <p className={styles.noCarsMessage}>No cars - no repairs!</p>
+      )}
     </div>
   );
 };

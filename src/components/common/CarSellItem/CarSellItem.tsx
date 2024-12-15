@@ -11,8 +11,7 @@ interface Props {
 }
 
 export const CarSellItem = ({ car }: Props) => {
-  const userImage =
-    "https://i.pinimg.com/originals/3e/48/6f/3e486fc989e7cf87e748b750692d86c9.jpg"; // car.owner.imageUrl;
+  const userImage = car.owner.avatarUrl;
   const removeCar = useCarsStore((state) => state.removeCar);
   const incrementVehiclesOwned = useUserStore(
     (state) => state.incrementVehiclesOwned

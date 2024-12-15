@@ -5,9 +5,12 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { GaragePage } from "./pages/GaragePage";
 import { VehiclesPage } from "./pages/VehiclesPage";
 import { Layout } from "./components/Layout";
-import "./App.scss";
 import { RepairsPage } from "./pages/RepairsPage";
 import { LogoutPage } from "./pages/LogoutPage";
+import { UsersPage } from "./pages/UsersPage";
+import { AddVehiclePage } from "./pages/AddVehiclePage";
+
+import "./App.scss";
 
 function App() {
   return (
@@ -23,6 +26,8 @@ function App() {
           <Route path="/garage" element={<GaragePage />} />
           <Route path="/vehicles" element={<VehiclesPage />} />
           <Route path="/repairs" element={<RepairsPage />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/add-vehicle" element={<AddVehiclePage />} />
         </Route>
       </Routes>
     </Router>

@@ -6,6 +6,7 @@ import {
   DollarCircle,
   Home,
   Logout,
+  People,
   Repair,
   SteeringWheel,
 } from "../../assets/svg";
@@ -27,11 +28,8 @@ export const Layout = () => {
     }
   }, []);
 
-  const userName = useUserStore((state) => state.userName);
-  const userImageUrl =
-    "https://i.pinimg.com/originals/3e/48/6f/3e486fc989e7cf87e748b750692d86c9.jpg"; //useUserStore((state) => state.imageUrl);
-  const vehiclesSold = useUserStore((state) => state.vehiclesSold);
-  const vehiclesOwned = useUserStore((state) => state.vehiclesOwned);
+  const { name, surname, avatarUrl, vehiclesOwned, vehiclesSold } =
+    useUserStore();
 
   return (
     <div className={styles.container}>
@@ -47,10 +45,10 @@ export const Layout = () => {
           <div className={styles.userInfo}>
             <img
               className={styles.userImage}
-              src={userImageUrl}
+              src={avatarUrl}
               alt="User image"
             />
-            <span className={styles.userName}>{userName}</span>
+            <span className={styles.userName}>{surname + " " + name}</span>
             <div className={styles.userInfoItems}>
               <div className={styles.userInfoItem}>
                 <img src={DollarCircle} className={styles.userInfoItemIcon} />
@@ -73,6 +71,7 @@ export const Layout = () => {
             text="Browse Vehicles"
           />
           <LayoutNavLinkItem to="/repairs" icon={Repair} text="Repairs" />
+          <LayoutNavLinkItem to="/users" icon={People} text="Users" />
         </div>
 
         <div className={styles.bottomContent}>

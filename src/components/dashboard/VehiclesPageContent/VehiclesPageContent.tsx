@@ -26,7 +26,9 @@ export const VehiclesPageContent = () => {
         ))}
       </ul>
       {currentCars.length === 0 && (
-        <p className={styles.noCarsMessage}>There are no cars available</p>
+        <p className={styles.noCarsMessage}>
+          There are no cars available for sale.
+        </p>
       )}
     </div>
   );
