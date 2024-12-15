@@ -40,7 +40,7 @@ API.interceptors.response.use(
       if (!refreshTokenFromStorage) {
         localStorage.removeItem("access-token");
         localStorage.removeItem("refresh-token");
-        window.location.replace("/login");
+        window.location.replace("/");
         return;
       }
 
@@ -58,7 +58,7 @@ API.interceptors.response.use(
         if (response?.status === 401 || response?.status === 403) {
           localStorage.removeItem("access-token");
           localStorage.removeItem("refresh-token");
-          window.location.replace("/login");
+          window.location.replace("/");
           return;
         }
       }

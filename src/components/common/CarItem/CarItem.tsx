@@ -136,7 +136,7 @@ export const CarItem = ({ car, showRepairs }: Props) => {
           </div>
           <div className={styles.headerTextContent}>
             <span className={styles.make}>{car.make + " " + car.model}</span>
-            <span className={styles.model}>Car Type</span>
+            <span className={styles.model}>Car Model</span>
           </div>
         </div>
         <div className={styles.rightHeaderContent}>

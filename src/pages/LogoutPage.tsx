@@ -12,5 +12,5 @@ export const LogoutPage = () => {
   setIsAuth(false);
   clearUser();
 
-  return <Navigate to="/login" />;
+  return <Navigate to="/" />;
 };

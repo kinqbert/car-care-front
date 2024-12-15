@@ -38,11 +38,13 @@ export const Layout = () => {
       <aside className={styles.sidePanel}>
         <div className={styles.topContent}>
           <div className={styles.logo}>
-            <img
-              className={styles.logoWrapper}
-              src={LogoWithText}
-              alt="CarCare logo with text"
-            />
+            <Link to="/">
+              <img
+                className={styles.logoWrapper}
+                src={LogoWithText}
+                alt="CarCare logo with text"
+              />
+            </Link>
           </div>
           <div className={styles.userInfo}>
             <Link to="/edit-user">

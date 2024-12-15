@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { register } from "../../../api/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { checkEmail } from "../../../api/user";
 import { UserRegisterData } from "../../../types/User";
 
@@ -8,9 +8,17 @@ import styles from "./styles.module.scss";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
 import { imageExists } from "../../../utils/imageExists";
+import { useAuthStore } from "../../../store/useAuthStore";
 
 export const RegisterPageContent = () => {
   const navigate = useNavigate();
+  const isAuth = useAuthStore((state) => state.isAuth);
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/garage");
+    }
+  }, []);
 
   const [error, setError] = useState("");
   const [isOnDataInputPhase, setIsOnDataInputPhase] = useState(false);

@@ -4,13 +4,22 @@ import { getCurrentUser } from "../../../api/user";
 import { useUserStore } from "../../../store/useUserStore";
 
 import styles from "./styles.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
+import { useAuthStore } from "../../../store/useAuthStore";
 
 export default function LoginPageContent() {
   const navigate = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
+  const setIsAuth = useAuthStore((state) => state.setIsAuth);
+  const isAuth = useAuthStore((state) => state.isAuth);
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/garage");
+    }
+  }, []);
 
   const [emailValue, setEmailValue] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -49,6 +58,8 @@ export default function LoginPageContent() {
       localStorage.setItem("access-token", response.accessToken);
 
       const userInfo = await getCurrentUser();
+
+      setIsAuth(true);
 
       setUser(userInfo);
 
