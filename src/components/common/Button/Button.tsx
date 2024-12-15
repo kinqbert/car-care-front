@@ -5,7 +5,7 @@ interface Props {
   title: string;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
-  variant?: "filled" | "outlined";
+  variant?: "filled" | "outline";
   to?: string;
 }
 

@@ -81,7 +81,8 @@ export default function LoginPageContent() {
         />
 
         <div className={styles.buttonContainer}>
-          <Button type="submit" title="Login" />
+          <Button title="Login" type="submit" />
+          <Button title="Register" to="/register" variant="outline" />
         </div>
 
         {error && (

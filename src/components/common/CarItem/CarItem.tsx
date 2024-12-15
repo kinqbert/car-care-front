@@ -38,7 +38,7 @@ export const CarItem = ({ car, showRepairs }: Props) => {
       return <Button title="Repair" onClick={handleRepair} />;
     }
 
-    const sellButtonVariant = car.isPurchaseAvailable ? "outlined" : "filled";
+    const sellButtonVariant = car.isPurchaseAvailable ? "outline" : "filled";
     const sellButtonText = car.isPurchaseAvailable ? "Cancel sell" : "Sell";
     const handleSell = async () => {
       let updatedCar = car;
@@ -147,7 +147,7 @@ export const CarItem = ({ car, showRepairs }: Props) => {
           <ActionButton />
           <Button
             title="Details"
-            variant="outlined"
+            variant="outline"
             to={`/vehicle/${car._id}`}
           />
         </div>

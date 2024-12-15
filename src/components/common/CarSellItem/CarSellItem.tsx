@@ -63,7 +63,7 @@ export const CarSellItem = ({ car }: Props) => {
           <Button
             title="Details"
             to={`/vehicle/${car._id}`}
-            variant="outlined"
+            variant="outline"
           />
         </div>
         <span className={styles.price}>${car.price.toLocaleString()}</span>

@@ -172,6 +172,7 @@ export const RegisterPageContent = () => {
 
           <div className={styles.buttonContainer}>
             <Button type="submit" title="Register" />
+            <Button title="Login" to="/login" variant="outline" />
           </div>
         </form>
       ) : (
@@ -195,13 +196,14 @@ export const RegisterPageContent = () => {
 
             <div className={styles.buttonContainer}>
               <Button type="submit" title="Continue" />
+              <Button title="Login" to="/login" variant="outline" />
             </div>
+            {error && (
+              <div className={styles.errorContainer}>
+                <p>{error}</p>
+              </div>
+            )}
           </form>
-          {error && (
-            <div className={styles.errorContainer}>
-              <p>{error}</p>
-            </div>
-          )}
         </>
       )}
     </div>
