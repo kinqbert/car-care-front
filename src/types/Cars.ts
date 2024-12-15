@@ -26,6 +26,11 @@ export interface CarWithRepairs extends Car {
   repairs: Repair[];
 }
 
+export interface CarWithOwnerDetailsAndRepairs extends Car {
+  owner: User;
+  repairs: Repair[];
+}
+
 export interface CarMake {
   name: string;
   logoUrl: string;

@@ -7,3 +7,10 @@ export interface Repair {
   description: string;
   severity: RepairSeverity;
 }
+
+export interface RepairCreateData {
+  carId: string;
+  shortDescription: string;
+  description: string;
+  severity: RepairSeverity;
+}

@@ -8,9 +8,7 @@ export interface User {
 }
 
 export interface UserState extends User {
-  vehiclesOwned: number;
   vehiclesSold: number;
-  incrementVehiclesOwned: () => void;
   setUser: (data: User) => void;
   setUserPartial: (data: Partial<User>) => void;
   clearUser: () => void;

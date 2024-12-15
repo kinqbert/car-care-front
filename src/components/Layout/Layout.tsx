@@ -15,10 +15,12 @@ import { useUserStore } from "../../store/useUserStore";
 import { useAuthStore } from "../../store/useAuthStore";
 import { getCurrentUser } from "../../api/user";
 import { useEffect } from "react";
+import { useCarsStore } from "../../store/useCarsStore";
 
 export const Layout = () => {
   const isAuth = useAuthStore((state) => state.isAuth);
   const setUser = useUserStore((state) => state.setUser);
+  const userCars = useCarsStore((state) => state.userCars);
 
   useEffect(() => {
     if (isAuth) {
@@ -28,8 +30,7 @@ export const Layout = () => {
     }
   }, []);
 
-  const { name, surname, avatarUrl, vehiclesOwned, vehiclesSold } =
-    useUserStore();
+  const { name, surname, avatarUrl, vehiclesSold } = useUserStore();
 
   return (
     <div className={styles.container}>
@@ -50,7 +51,7 @@ export const Layout = () => {
                 alt="User image"
               />
             </Link>
-            <span className={styles.userName}>{surname + " " + name}</span>
+            <span className={styles.userName}>{name + " " + surname}</span>
             <div className={styles.userInfoItems}>
               <div className={styles.userInfoItem}>
                 <img src={DollarCircle} className={styles.userInfoItemIcon} />
@@ -61,7 +62,7 @@ export const Layout = () => {
               <div className={styles.userInfoItem}>
                 <img src={SteeringWheel} className={styles.userInfoItemIcon} />
                 <span className={styles.userInfoItemText}>
-                  Owned: {vehiclesOwned}
+                  Owned: {userCars.length}
                 </span>
               </div>
             </div>

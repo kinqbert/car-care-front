@@ -6,6 +6,8 @@ export const getUserCars = async () =>
   (await API.get(API_ROUTES.CARS.GET_USER_CARS)).data;
 export const getAllCars = async () =>
   (await API.get(API_ROUTES.CARS.GET_ALL_CARS)).data;
+export const getCarById = async (id: string) =>
+  (await API.get(API_ROUTES.CARS.GET_CAR_BY_ID(id))).data;
 export const purchaseCar = async (id: string) =>
   (await API.patch(API_ROUTES.CARS.PURCHASE(id))).data;
 export const sellCar = async (id: string) =>

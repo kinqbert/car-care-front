@@ -8,7 +8,6 @@ export const useUserStore = create<UserState>((set, get) => ({
   name: "",
   licenseNumber: "",
   avatarUrl: "",
-  vehiclesOwned: 0,
   vehiclesSold: 0,
   setUser: (data) => {
     set({ ...data });
@@ -24,12 +23,8 @@ export const useUserStore = create<UserState>((set, get) => ({
       name: "",
       licenseNumber: "",
       avatarUrl: "",
-      vehiclesOwned: 0,
       vehiclesSold: 0,
     });
-  },
-  incrementVehiclesOwned: () => {
-    set((state) => ({ vehiclesOwned: state.vehiclesOwned + 1 }));
   },
   getUserFullName: () => {
     return `${get().name} ${get().surname}`;

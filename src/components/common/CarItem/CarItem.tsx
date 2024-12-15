@@ -145,7 +145,11 @@ export const CarItem = ({ car, showRepairs }: Props) => {
           )}
 
           <ActionButton />
-          <Button title="Details" variant="outlined" />
+          <Button
+            title="Details"
+            variant="outlined"
+            to={`/vehicle/${car._id}`}
+          />
         </div>
       </div>
       <div className={styles.carItemContent}>

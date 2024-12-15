@@ -1,6 +1,5 @@
 import { purchaseCar } from "../../../api/cars";
 import { useCarsStore } from "../../../store/useCarsStore";
-import { useUserStore } from "../../../store/useUserStore";
 import { CarWithOwnerDetails } from "../../../types/Cars";
 import { Button } from "../Button";
 
@@ -13,15 +12,11 @@ interface Props {
 export const CarSellItem = ({ car }: Props) => {
   const userImage = car.owner.avatarUrl;
   const removeCar = useCarsStore((state) => state.removeCar);
-  const incrementVehiclesOwned = useUserStore(
-    (state) => state.incrementVehiclesOwned
-  );
 
   const handlePurchase = async () => {
     await purchaseCar(car._id);
 
     removeCar(car._id);
-    incrementVehiclesOwned();
   };
 
   return (
