@@ -35,9 +35,14 @@ export const EditUserPageContent = () => {
     });
   }, []);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let isError = false;
+
+    setNameError("");
+    setSurnameError("");
+    setLicenseNumberError("");
+    setAvatarUrlError("");
 
     if (!nameValue.trim()) {
       setNameError("Name is required");
@@ -69,15 +74,13 @@ export const EditUserPageContent = () => {
     if (!avatarUrlValue.trim()) {
       setAvatarUrlError("Image link is required");
       isError = true;
-    } else {
-      imageExists(avatarUrlValue).then((result) => {
-        if (!result) {
-          setAvatarUrlError("Image does not exist.");
-          isError = true;
-        } else {
-          setAvatarUrlError("");
-        }
-      });
+    }
+
+    const imageIsValid = await imageExists(avatarUrlValue);
+
+    if (!imageIsValid) {
+      setAvatarUrlError("Image does not exist");
+      isError = true;
     }
 
     if (isError) {

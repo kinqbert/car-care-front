@@ -63,9 +63,16 @@ export const AddVehiclePageContent = () => {
     (make) => make.name === vehicleMakeValue
   );
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let isError = false;
+
+    setVehicleImageError("");
+    setVehicleModelError("");
+    setVehicleWeightError("");
+    setVehicleMaxSpeedError("");
+    setVehiclePriceError("");
+    setVehicleHorsePowerError("");
 
     if (!vehicleModelValue.trim()) {
       setVehicleModelError("Model is required");
@@ -77,15 +84,13 @@ export const AddVehiclePageContent = () => {
     if (!vehicleImageValue.trim()) {
       setVehicleImageError("Image link is required");
       isError = true;
-    } else {
-      imageExists(vehicleImageValue).then((result) => {
-        if (!result) {
-          setVehicleImageError("Image does not exist.");
-          isError = true;
-        } else {
-          setVehicleImageError("");
-        }
-      });
+    }
+
+    const imageIsValid = await imageExists(vehicleImageValue);
+
+    if (!imageIsValid) {
+      setVehicleImageError("Image does not exist.");
+      isError = true;
     }
 
     if (vehicleWeightValue <= 0) {
