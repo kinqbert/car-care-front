@@ -9,6 +9,7 @@ import {
   People,
   Repair,
   SteeringWheel,
+  Trade,
 } from "../../assets/svg";
 import { LayoutNavLinkItem } from "./LayoutNavLinkItem";
 import { useUserStore } from "../../store/useUserStore";
@@ -75,6 +76,11 @@ export const Layout = () => {
           />
           <LayoutNavLinkItem to="/repairs" icon={Repair} text="Repairs" />
           <LayoutNavLinkItem to="/users" icon={People} text="Users" />
+          <LayoutNavLinkItem
+            to="/transactions"
+            icon={Trade}
+            text="Transactions"
+          />
         </div>
 
         <div className={styles.bottomContent}>

@@ -14,6 +14,7 @@ import "./App.scss";
 import { EditUserPage } from "./pages/EditUserPage";
 import { VehiclePage } from "./pages/VehiclePage";
 import { AddRepairPage } from "./pages/AddRepairPage";
+import { TransactionsPage } from "./pages/TransactionsPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/vehicles" element={<VehiclesPage />} />
           <Route path="/repairs" element={<RepairsPage />} />
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
           <Route path="/add-vehicle" element={<AddVehiclePage />} />
           <Route path="/add-repair" element={<AddRepairPage />} />
           <Route path="/edit-user" element={<EditUserPage />} />

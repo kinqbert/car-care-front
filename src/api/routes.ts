@@ -22,4 +22,7 @@ export const API_ROUTES = {
   REPAIRS: {
     CREATE: "/api/repairs/create",
   },
+  TRANSACTIONS: {
+    GET_ALL_TRASACTIONS: "/api/transactions",
+  },
 };

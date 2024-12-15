@@ -2,15 +2,17 @@
 
 .carInfoItem {
   width: 100%;
-  height: 36px;
+  min-height: 36px;
   padding: 5px;
-
-  display: flex;
-  gap: 10px;
-  align-items: center;
 
   border-radius: 5px;
   background-color: $elements-neutral-grey;
+}
+
+.header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .iconWrapper {
@@ -44,6 +46,14 @@
 .iconText {
   font-size: 12px;
   font-weight: 300;
+}
+
+.repairDescription {
+  margin-top: 10px;
+
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.8;
 }
 
 .highSeverityCarInfo {

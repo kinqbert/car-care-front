@@ -1,57 +1,128 @@
 import { useNavigate } from "react-router-dom";
 import { register } from "../../../api/auth";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { checkEmail } from "../../../api/user";
 import { UserRegisterData } from "../../../types/User";
 
+import styles from "./styles.module.scss";
+import { Input } from "../../common/Input";
+import { Button } from "../../common/Button";
+import { imageExists } from "../../../utils/imageExists";
+
 export const RegisterPageContent = () => {
   const navigate = useNavigate();
-  const [errorText, setErrorText] = useState("");
+
+  const [error, setError] = useState("");
   const [isOnDataInputPhase, setIsOnDataInputPhase] = useState(false);
 
-  const savedEmail = useRef("");
-  const savedPassword = useRef("");
-  const emailInputRef = useRef<HTMLInputElement>(null);
-  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const [emailValue, setEmailValue] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const [nameValue, setNameValue] = useState("");
+  const [nameError, setNameError] = useState("");
+
+  const [surnameValue, setSurnameValue] = useState("");
+  const [surnameError, setSurnameError] = useState("");
+
+  const [licenseNumberValue, setLicenseNumberValue] = useState("");
+  const [licenseNumberError, setLicenseNumberError] = useState("");
+
+  const [avatarUrlValue, setAvatarUrlValue] = useState("");
+  const [avatarUrlError, setAvatarUrlError] = useState("");
 
   const onFirstPhaseSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    let isError = false;
 
-    const email = formData.get("email");
-    const password = formData.get("password");
+    setError("");
+    setEmailError("");
 
-    if (!email || !password) {
+    if (!emailValue.trim()) {
+      setEmailError("Email is required");
+      isError = true;
+    }
+
+    if (!passwordValue.trim()) {
+      setPasswordError("Password is required");
+      isError = true;
+    }
+
+    if (isError) {
       return;
     }
 
-    checkEmail(email.toString())
+    checkEmail(emailValue)
       .then(() => {
-        savedEmail.current = email.toString();
-        savedPassword.current = password.toString();
         setIsOnDataInputPhase(true);
-
-        if (emailInputRef.current) emailInputRef.current.value = "";
-        if (passwordInputRef.current) passwordInputRef.current.value = "";
       })
       .catch(() => {
-        setErrorText("Email already in use");
+        setError("Email already in use");
       });
   };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    let isError = false;
+
+    setError("");
+    setEmailError("");
+    setPasswordError("");
+    setNameError("");
+    setSurnameError("");
+    setLicenseNumberError("");
+    setAvatarUrlError("");
+
+    if (!nameValue.trim()) {
+      setNameError("Name is required");
+      isError = true;
+    }
+
+    if (!surnameValue.trim()) {
+      setSurnameError("Surname is required");
+      isError = true;
+    }
+
+    if (!licenseNumberValue.trim()) {
+      setLicenseNumberError("License number is required");
+      isError = true;
+    }
+
+    if (licenseNumberValue.length !== 8) {
+      setLicenseNumberError("License number must be 8 characters long");
+      isError = true;
+    }
+
+    const numbers = /^[0-9]+$/;
+
+    if (!licenseNumberValue.match(numbers)) {
+      setLicenseNumberError("License number must contain only numbers");
+      isError = true;
+    }
+
+    const imageIsValid = await imageExists(avatarUrlValue);
+
+    if (!!avatarUrlValue.trim()) {
+      if (!imageIsValid) {
+        setAvatarUrlError("Image does not exist");
+        isError = true;
+      }
+    }
+
+    if (isError) {
+      return;
+    }
 
     const registerData: UserRegisterData = {
-      email: savedEmail.current.toString(),
-      password: savedPassword.current.toString(),
-      name: formData.get("name")?.toString() || "",
-      surname: formData.get("surname")?.toString() || "",
-      licenseNumber: formData.get("licenseNumber")?.toString() || "",
-      avatarUrl: formData.get("avatarUrl")?.toString() || "",
+      email: emailValue,
+      password: passwordValue,
+      name: nameValue,
+      surname: surnameValue,
+      licenseNumber: licenseNumberValue,
+      avatarUrl: avatarUrlValue,
     };
 
     register(registerData)
@@ -59,33 +130,80 @@ export const RegisterPageContent = () => {
         navigate("/login");
       })
       .catch(() => {
-        setErrorText("Registration failed. Please try again.");
+        setError("Registration failed. Please try again.");
       });
   };
 
-  if (isOnDataInputPhase) {
-    return (
-      <form onSubmit={onSubmit}>
-        <input type="text" placeholder="Name" name="name" />
-        <input type="text" placeholder="Surname" name="surname" />
-        <input type="text" placeholder="License number" name="licenseNumber" />
-        <input type="text" placeholder="Avatar URL" name="avatarUrl" />
-        <button type="submit">Register</button>
-      </form>
-    );
-  }
-
   return (
-    <form onSubmit={onFirstPhaseSubmit}>
-      <input type="text" placeholder="Email" name="email" ref={emailInputRef} />
-      <input
-        type="password"
-        placeholder="Password"
-        name="password"
-        ref={passwordInputRef}
-      />
-      <button type="submit">Register</button>
-      {errorText && <p>{errorText}</p>}
-    </form>
+    <div className={styles.container}>
+      <h1>Register</h1>
+      {isOnDataInputPhase ? (
+        <form className={styles.form} onSubmit={onSubmit}>
+          <Input
+            label="Name"
+            placeholder="Name"
+            value={nameValue}
+            onChange={setNameValue}
+            error={nameError}
+          />
+          <Input
+            label="Surname"
+            placeholder="Surname"
+            value={surnameValue}
+            onChange={setSurnameValue}
+            error={surnameError}
+          />
+
+          <Input
+            label="License number"
+            placeholder="License number"
+            value={licenseNumberValue}
+            onChange={setLicenseNumberValue}
+            error={licenseNumberError}
+          />
+
+          <Input
+            label="Avatar URL"
+            placeholder="Avatar URL"
+            value={avatarUrlValue}
+            onChange={setAvatarUrlValue}
+            error={avatarUrlError}
+          />
+
+          <div className={styles.buttonContainer}>
+            <Button type="submit" title="Register" />
+          </div>
+        </form>
+      ) : (
+        <>
+          <form className={styles.form} onSubmit={onFirstPhaseSubmit}>
+            <Input
+              label="Email"
+              placeholder="Email"
+              value={emailValue}
+              onChange={setEmailValue}
+              error={emailError}
+            />
+            <Input
+              label="Password"
+              placeholder="Password"
+              value={passwordValue}
+              onChange={setPasswordValue}
+              error={passwordError}
+              type="password"
+            />
+
+            <div className={styles.buttonContainer}>
+              <Button type="submit" title="Continue" />
+            </div>
+          </form>
+          {error && (
+            <div className={styles.errorContainer}>
+              <p>{error}</p>
+            </div>
+          )}
+        </>
+      )}
+    </div>
   );
 };

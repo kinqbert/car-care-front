@@ -69,7 +69,7 @@ export const AddRepairPageContent = () => {
     }
 
     const repairData: RepairCreateData = {
-      carId: selectedCarId,
+      car: selectedCarId,
       shortDescription,
       description,
       severity,

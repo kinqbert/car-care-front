@@ -78,9 +78,11 @@ export const EditUserPageContent = () => {
 
     const imageIsValid = await imageExists(avatarUrlValue);
 
-    if (!imageIsValid) {
-      setAvatarUrlError("Image does not exist");
-      isError = true;
+    if (!!avatarUrlValue.trim()) {
+      if (!imageIsValid) {
+        setAvatarUrlError("Image does not exist");
+        isError = true;
+      }
     }
 
     if (isError) {

@@ -119,7 +119,11 @@ export const VehiclePageContent = () => {
               </span>
             )}
             {currentVehicle.repairs.map((repair) => (
-              <RepairItem key={repair._id} repair={repair} />
+              <RepairItem
+                key={repair._id}
+                repair={repair}
+                showFullDescription
+              />
             ))}
           </div>
         </div>

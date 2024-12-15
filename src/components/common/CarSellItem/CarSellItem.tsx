@@ -60,7 +60,11 @@ export const CarSellItem = ({ car }: Props) => {
       <div className={styles.footer}>
         <div className={styles.footerButtons}>
           <Button title="Purchase" onClick={handlePurchase} />
-          <Button title="Details" variant="outlined" />
+          <Button
+            title="Details"
+            to={`/vehicle/${car._id}`}
+            variant="outlined"
+          />
         </div>
         <span className={styles.price}>${car.price.toLocaleString()}</span>
       </div>

@@ -6,6 +6,7 @@ interface Props {
   onChange: (value: string) => void;
   placeholder?: string | number;
   error?: string;
+  type?: "text" | "password";
 }
 
 export const Input = ({
@@ -14,6 +15,7 @@ export const Input = ({
   onChange,
   placeholder,
   error,
+  type = "text",
 }: Props) => {
   return (
     <div className={styles.inputContainer}>
@@ -23,6 +25,7 @@ export const Input = ({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder?.toString()}
+        type={type}
       />
       {error && <span className={styles.inputError}>{error}</span>}
     </div>

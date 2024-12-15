@@ -9,9 +9,16 @@ interface Props {
   isNeutral?: boolean;
   iconText?: string;
   text?: string;
+  showFullDescription?: boolean;
 }
 
-export const RepairItem = ({ repair, isNeutral, iconText, text }: Props) => {
+export const RepairItem = ({
+  repair,
+  isNeutral,
+  iconText,
+  text,
+  showFullDescription,
+}: Props) => {
   if (!repair && !isNeutral) {
     return null;
   }
@@ -44,14 +51,19 @@ export const RepairItem = ({ repair, isNeutral, iconText, text }: Props) => {
 
   return (
     <div className={carInfoItemStyles.join(" ")}>
-      <div className={iconWrapperStyles.join(" ")}>
-        {iconText ? (
-          <span className={styles.iconText}>{iconText}</span>
-        ) : (
-          <img className={styles.icon} src={ExclamationIcon} alt="icon" />
-        )}
+      <div className={styles.header}>
+        <div className={iconWrapperStyles.join(" ")}>
+          {iconText ? (
+            <span className={styles.iconText}>{iconText}</span>
+          ) : (
+            <img className={styles.icon} src={ExclamationIcon} alt="icon" />
+          )}
+        </div>
+        <span className={styles.text}>{text || repair?.shortDescription}</span>
       </div>
-      <span className={styles.text}>{text || repair?.shortDescription}</span>
+      {showFullDescription && (
+        <p className={styles.repairDescription}>{repair?.description || ""}</p>
+      )}
     </div>
   );
 };

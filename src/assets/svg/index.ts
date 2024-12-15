@@ -6,6 +6,7 @@ import Car from "./car.svg";
 import Home from "./Home.svg";
 import Logout from "./logout.svg";
 import People from "./people.svg";
+import Trade from "./trade.svg";
 
 export {
   DollarCircle,
@@ -16,4 +17,5 @@ export {
   Home,
   Logout,
   People,
+  Trade,
 };

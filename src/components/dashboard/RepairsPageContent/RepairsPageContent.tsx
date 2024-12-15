@@ -5,6 +5,7 @@ import { CarItem } from "../../common/CarItem";
 import styles from "./styles.module.scss";
 import { useUserStore } from "../../../store/useUserStore";
 import { useCarsStore } from "../../../store/useCarsStore";
+import { Button } from "../../common/Button";
 
 export const RepairsPageContent = () => {
   const getUserFullName = useUserStore((state) => state.getUserFullName);
@@ -21,7 +22,10 @@ export const RepairsPageContent = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Garage of {getUserFullName()}</h1>
+      <header className={styles.header}>
+        <h1 className={styles.headerText}>Garage of {getUserFullName()}</h1>
+        <Button title="Add repair" to="/add-repair" />
+      </header>
       <ul className={styles.carsList}>
         {currentCars.map((car) => (
           <CarItem key={car._id} car={car} showRepairs={true} />
