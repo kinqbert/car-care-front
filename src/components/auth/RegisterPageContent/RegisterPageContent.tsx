@@ -59,6 +59,13 @@ export const RegisterPageContent = () => {
       isError = true;
     }
 
+    if (!!passwordValue.trim()) {
+      if (passwordValue.length < 8) {
+        setPasswordError("Password must be at least 8 characters long");
+        isError = true;
+      }
+    }
+
     if (isError) {
       return;
     }
