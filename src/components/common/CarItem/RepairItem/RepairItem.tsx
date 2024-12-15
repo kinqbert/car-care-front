@@ -26,14 +26,16 @@ export const RepairItem = ({
   if (isNeutral) {
     return (
       <div className={styles.carInfoItem}>
-        <div className={styles.iconWrapper}>
-          {iconText ? (
-            <span className={styles.iconText}>{iconText}</span>
-          ) : (
-            <img className={styles.icon} src={TickIcon} alt="icon" />
-          )}
+        <div className={styles.header}>
+          <div className={styles.iconWrapper}>
+            {iconText ? (
+              <span className={styles.iconText}>{iconText}</span>
+            ) : (
+              <img className={styles.icon} src={TickIcon} alt="icon" />
+            )}
+          </div>
+          <span className={styles.text}>{text || "No issues found!"}</span>
         </div>
-        <span className={styles.text}>{text || "No issues found!"}</span>
       </div>
     );
   }
