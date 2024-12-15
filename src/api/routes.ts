@@ -10,6 +10,7 @@ export const API_ROUTES = {
     SELL: (id: string) => `/api/${id || ""}/sell`,
     CANCEL_SELL: (id: string) => `/api/${id || ""}/cancel_sell`,
     REPAIR: (id: string) => `/api/${id || ""}/repair`,
+    CREATE: "/api/cars/create",
   },
   USER: {
     GET_USER: "/api/user",

@@ -1,3 +1,4 @@
+import { CarsCreateData } from "../../types/Cars";
 import API from "../api";
 import { API_ROUTES } from "../routes";
 
@@ -13,3 +14,5 @@ export const cancelSellCar = async (id: string) =>
   (await API.patch(API_ROUTES.CARS.CANCEL_SELL(id))).data;
 export const repairCar = async (id: string) =>
   (await API.patch(API_ROUTES.CARS.REPAIR(id))).data;
+export const createCar = async (data: CarsCreateData) =>
+  (await API.post(API_ROUTES.CARS.CREATE, data)).data;

@@ -16,7 +16,7 @@ export interface UserState extends User {
   getUserFullName: () => string;
 }
 
-export interface RegisterData {
+export interface UserRegisterData {
   email: string;
   password: string;
   name: string;

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../../../api/auth";
 import { useRef, useState } from "react";
 import { checkEmail } from "../../../api/user";
-import { RegisterData } from "../../../types/User";
+import { UserRegisterData } from "../../../types/User";
 
 export const RegisterPageContent = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export const RegisterPageContent = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    const registerData: RegisterData = {
+    const registerData: UserRegisterData = {
       email: savedEmail.current.toString(),
       password: savedPassword.current.toString(),
       name: formData.get("name")?.toString() || "",

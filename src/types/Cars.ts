@@ -26,11 +26,31 @@ export interface CarWithRepairs extends Car {
   repairs: Repair[];
 }
 
+export interface CarMake {
+  name: string;
+  logoUrl: string;
+}
+
 export interface CarsState {
   userCars: CarWithRepairs[];
   allCars: CarWithOwnerDetails[];
-  setUserCars: (data: Car[]) => void;
+  setUserCars: (data: CarWithRepairs[]) => void;
   setAllCars: (data: CarWithOwnerDetails[]) => void;
-  setUserCar: (id: string, data: Car) => void;
+  setUserCar: (id: string, data: CarWithRepairs) => void;
+  addUserCar: (data: CarWithRepairs) => void;
   removeCar: (id: string) => void;
+}
+
+export interface CarsCreateData {
+  make: string;
+  model: string;
+  year: number;
+  logoImageUrl: string;
+  sideImageUrl: string;
+  color: string;
+  weight: number;
+  fuelType: string;
+  maxSpeed: number;
+  price: number;
+  horsePower: number;
 }

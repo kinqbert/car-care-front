@@ -11,6 +11,8 @@ export const useCarsStore = create<CarsState>((set) => ({
       ...state,
       userCars: state.userCars.map((car) => (car._id === id ? data : car)),
     })),
+  addUserCar: (data) =>
+    set((state) => ({ ...state, userCars: [...state.userCars, data] })),
   removeCar: (id) =>
     set((state) => ({
       ...state,
