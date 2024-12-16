@@ -45,7 +45,9 @@ export const CarSellItem = ({ car }: Props) => {
             />
           </div>
           <div className={styles.headerTextContent}>
-            <span className={styles.make}>{car.owner.email}</span>
+            <span className={styles.make}>
+              {car.owner.name + " " + car.owner.surname}
+            </span>
             <span className={styles.model}>Owner</span>
           </div>
         </div>
