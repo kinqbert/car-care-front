@@ -4,7 +4,7 @@ export const API_ROUTES = {
     LOGIN: "/api/auth/login",
   },
   CARS: {
-    GET_USER_CARS: "/api/cars/user_cars",
+    GET_USER_CARS: "/api/cars/user",
     GET_ALL_CARS: "/api/cars",
     GET_CAR_BY_ID: (id: string) => `/api/cars/${id}`,
     PURCHASE: (id: string) => `/api/cars/${id || ""}/purchase`,
