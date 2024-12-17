@@ -188,7 +188,7 @@ export const VehiclePageContent = () => {
           </div>
           <div className={styles.carOwnershipsBlock}>
             <h2>Ownership history</h2>
-            {currentVehicle.owners.length === 1 && (
+            {currentVehicle.owners.length === 0 && (
               <span className={styles.noDamagesMessage}>
                 You are registered as the only owner of this car.
               </span>
