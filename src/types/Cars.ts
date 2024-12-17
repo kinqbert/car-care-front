@@ -1,5 +1,6 @@
 import { Damage } from "./Damage";
-import { User } from "./User";
+import { RepairWithDamageDetails } from "./Repair";
+import { User, UserOwnership } from "./User";
 
 export interface Car {
   _id: string;
@@ -26,9 +27,11 @@ export interface CarWithDamages extends Car {
   damages: Damage[];
 }
 
-export interface CarWithOwnerDetailsAndDamagess extends Car {
+export interface CarWithDetails extends Car {
   owner: User;
+  owners: UserOwnership[];
   damages: Damage[];
+  repairs: RepairWithDamageDetails[];
 }
 
 export interface CarMake {

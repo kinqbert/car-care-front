@@ -2,7 +2,7 @@
 
 .container {
   width: 100%;
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 .header {
@@ -110,6 +110,28 @@
   text-wrap-mode: nowrap;
 }
 
+/* CAR REPAIRS BLOCK */
+
+.carRepairsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: $light-gray;
+}
+
+/* CAR OWNERSHIPS BLOCK */
+
+.carOwnershipsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: $light-gray;
+}
+
 /* CAR DAMAGES BLOCK */
 
 .carDamagesBlock {
@@ -146,6 +168,8 @@
 
 .rightContent {
   width: 40%;
+
+  aspect-ratio: 1 / 1;
 
   display: flex;
   align-items: center;

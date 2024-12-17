@@ -30,3 +30,13 @@ export interface UserUpdateData {
   licenseNumber: string;
   avatarUrl: string;
 }
+
+export interface UserOwnership {
+  id: string;
+  name: string;
+  surname: string;
+  licenseNumber: string;
+  avatarUrl: string;
+  from: Date;
+  to: Date;
+}

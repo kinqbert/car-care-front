@@ -1,14 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "react";
-import { CarWithOwnerDetailsAndDamagess } from "../../../types/Cars";
-import { deleteCar, getCarById } from "../../../api/cars";
+import { CarWithDetails } from "../../../types/Cars";
+import { deleteCar, getCarById, repairCar } from "../../../api/cars";
 
 import styles from "./styles.module.scss";
 import { DamageItem } from "../../common/CarItem/DamageItem";
 import { useUserStore } from "../../../store/useUserStore";
 import { Button } from "../../common/Button";
 import { useCarsStore } from "../../../store/useCarsStore";
+import { RepairItem } from "../../common/CarItem/RepairItem";
+import { UserOwnershipItem } from "../../common/UserOwnershipItem";
 
 export const VehiclePageContent = () => {
   const navigate = useNavigate();
@@ -20,8 +22,9 @@ export const VehiclePageContent = () => {
   const [isRemovingCar, setIsRemovingCar] = useState(false);
   const [isRemoveCarLoading, setIsRemoveCarLoading] = useState(false);
 
-  const [currentVehicle, setCurrentVehicle] =
-    useState<CarWithOwnerDetailsAndDamagess | null>(null);
+  const [currentVehicle, setCurrentVehicle] = useState<CarWithDetails | null>(
+    null
+  );
 
   const handleRemoveCar = async () => {
     if (!currentVehicle) {
@@ -45,6 +48,20 @@ export const VehiclePageContent = () => {
     }
 
     setIsRemoveCarLoading(false);
+  };
+
+  const handleRepairCar = async () => {
+    if (!currentVehicle) {
+      return;
+    }
+
+    try {
+      const updatedCar = await repairCar(currentVehicle._id);
+
+      setCurrentVehicle(updatedCar);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -158,6 +175,28 @@ export const VehiclePageContent = () => {
               />
             ))}
           </div>
+          <div className={styles.carRepairsBlock}>
+            <h2>Repairs</h2>
+            {currentVehicle.repairs.length === 0 && (
+              <span className={styles.noDamagesMessage}>
+                No repairs registered.
+              </span>
+            )}
+            {currentVehicle.repairs.map((repair) => (
+              <RepairItem key={repair._id} repair={repair} />
+            ))}
+          </div>
+          <div className={styles.carOwnershipsBlock}>
+            <h2>Ownership history</h2>
+            {currentVehicle.owners.length === 1 && (
+              <span className={styles.noDamagesMessage}>
+                You are registered as the only owner of this car.
+              </span>
+            )}
+            {currentVehicle.owners.map((ownership) => (
+              <UserOwnershipItem key={ownership.id} userOwnership={ownership} />
+            ))}
+          </div>
           {currentVehicle.owner.id === userId && (
             <div className={styles.carActionsBlock}>
               <h2>Car Actions</h2>
@@ -168,6 +207,20 @@ export const VehiclePageContent = () => {
                   variant={isRemovingCar ? "error" : "outline"}
                   isLoading={isRemoveCarLoading}
                 />
+                {isRemovingCar && (
+                  <Button
+                    title="Cancel"
+                    onClick={() => setIsRemovingCar(false)}
+                    variant="outline"
+                  />
+                )}
+                {currentVehicle.damages.length > 0 && (
+                  <Button
+                    title="Repair car"
+                    onClick={handleRepairCar}
+                    variant="outline"
+                  />
+                )}
               </div>
             </div>
           )}

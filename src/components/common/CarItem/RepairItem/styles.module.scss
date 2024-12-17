@@ -1,0 +1,62 @@
+@use "../../../../styles/colors.scss" as *;
+
+.carRepairItem {
+  width: 100%;
+  min-height: 36px;
+}
+
+.header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.headerContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.iconWrapper {
+  height: 26px;
+  width: 26px;
+  padding: 6px;
+
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #343434;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+.damagesDetails {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.damageDetail {
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.75;
+  background-color: $lighter-gray;
+  padding: 5px;
+  border-radius: 5px;
+}
