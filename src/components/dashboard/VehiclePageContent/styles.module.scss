@@ -110,9 +110,9 @@
   text-wrap-mode: nowrap;
 }
 
-/* CAR REPAIRS BLOCK */
+/* CAR DAMAGES BLOCK */
 
-.carRepairsBlock {
+.carDamagesBlock {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -121,11 +121,25 @@
   background-color: $light-gray;
 }
 
-.noRepairsMessage {
+.noDamagesMessage {
   font-size: 14px;
   font-weight: 300;
   margin-top: 10px;
   opacity: 0.5;
+}
+
+.carActionsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: $light-gray;
+}
+
+.carActionsItems {
+  display: flex;
+  gap: 20px;
 }
 
 /* CAR IMAGE */

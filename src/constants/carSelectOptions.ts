@@ -1,4 +1,4 @@
-import { RepairSeverity } from "../enums/RepairSeverity";
+import { DamageSeverity } from "../enums/DamageSeverity";
 import { CarMake } from "../types/Cars";
 
 export const carMakes: CarMake[] = [
@@ -86,7 +86,7 @@ export const vehicleFuelTypeOptions = fuelTypes.map((fuelType) => ({
   label: fuelType,
 }));
 
-export const vehicleRepairSeverityOptions = [
-  { value: RepairSeverity.MEDIUM, label: "Medium" },
-  { value: RepairSeverity.HIGH, label: "High" },
+export const vehicleDamageSeverityOptions = [
+  { value: DamageSeverity.MEDIUM, label: "Medium" },
+  { value: DamageSeverity.HIGH, label: "High" },
 ];

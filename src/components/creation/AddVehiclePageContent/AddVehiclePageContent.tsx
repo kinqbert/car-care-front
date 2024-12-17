@@ -15,7 +15,7 @@ import {
 } from "../../../constants/carSelectOptions";
 import { Button } from "../../common/Button";
 import { imageExists } from "../../../utils/imageExists";
-import { CarsCreateData, CarWithRepairs } from "../../../types/Cars";
+import { CarsCreateData, CarWithDamages } from "../../../types/Cars";
 import { createCar } from "../../../api/cars";
 import { useNavigate } from "react-router-dom";
 import { useCarsStore } from "../../../store/useCarsStore";
@@ -138,7 +138,7 @@ export const AddVehiclePageContent = () => {
     createCar(carData).then((response) => {
       alert("Car created successfully");
 
-      addUserCar(response as CarWithRepairs);
+      addUserCar(response as CarWithDamages);
 
       navigate("/garage");
     });

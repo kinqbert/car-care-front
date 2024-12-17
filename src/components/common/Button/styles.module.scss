@@ -32,4 +32,13 @@
       background-color: rgba($color: $main-white, $alpha: 0.1);
     }
   }
+
+  &__error {
+    color: $main-white;
+    background-color: $red-error;
+
+    &:hover {
+      background-color: rgba($color: $red-error, $alpha: 0.6);
+    }
+  }
 }

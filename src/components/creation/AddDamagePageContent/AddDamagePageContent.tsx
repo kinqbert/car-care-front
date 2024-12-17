@@ -3,16 +3,16 @@ import styles from "./styles.module.scss";
 import { Button } from "../../common/Button";
 import { useNavigate } from "react-router-dom";
 import { useCarsStore } from "../../../store/useCarsStore";
-import { RepairCreateData } from "../../../types/Repair";
+import { DamageCreateData } from "../../../types/Damage";
 import { useEffect, useState } from "react";
 import { Select } from "../../common/Select";
 import { Input } from "../../common/Input";
-import { vehicleRepairSeverityOptions } from "../../../constants/carSelectOptions";
-import { createRepair } from "../../../api/repairs";
-import { RepairSeverity } from "../../../enums/RepairSeverity";
+import { vehicleDamageSeverityOptions } from "../../../constants/carSelectOptions";
+import { createDamage } from "../../../api/damage";
+import { DamageSeverity } from "../../../enums/DamageSeverity";
 import { getUserCars } from "../../../api/cars";
 
-export const AddRepairPageContent = () => {
+export const AddDamagePageContent = () => {
   const navigate = useNavigate();
 
   const { userCars, setUserCars, setUserCar } = useCarsStore();
@@ -45,7 +45,7 @@ export const AddRepairPageContent = () => {
   const [descriptionError, setDescriptionError] = useState("");
 
   const [severity, setSeverity] = useState(
-    vehicleRepairSeverityOptions[0].value
+    vehicleDamageSeverityOptions[0].value
   );
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -68,14 +68,14 @@ export const AddRepairPageContent = () => {
       return;
     }
 
-    const repairData: RepairCreateData = {
+    const damageData: DamageCreateData = {
       car: selectedCarId,
       shortDescription,
       description,
       severity,
     };
 
-    createRepair(repairData).then((response) => {
+    createDamage(damageData).then((response) => {
       const updatedCar = userCars.find((car) => car._id === selectedCarId);
 
       if (!updatedCar) {
@@ -84,7 +84,7 @@ export const AddRepairPageContent = () => {
 
       setUserCar(selectedCarId, {
         ...updatedCar,
-        repairs: [...updatedCar.repairs, response],
+        damages: [...updatedCar.damages, response],
       });
 
       navigate("/repairs");
@@ -125,9 +125,9 @@ export const AddRepairPageContent = () => {
         />
         <Select
           label="Severity"
-          options={vehicleRepairSeverityOptions}
+          options={vehicleDamageSeverityOptions}
           value={severity}
-          onChange={(value) => setSeverity(value as RepairSeverity)}
+          onChange={(value) => setSeverity(value as DamageSeverity)}
         />
 
         <Button title="Submit" type="submit" />

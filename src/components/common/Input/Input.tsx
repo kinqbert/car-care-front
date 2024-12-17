@@ -6,7 +6,7 @@ interface Props {
   onChange: (value: string) => void;
   placeholder?: string | number;
   error?: string;
-  type?: "text" | "password";
+  type?: "text" | "password" | "email";
 }
 
 export const Input = ({

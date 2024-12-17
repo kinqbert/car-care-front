@@ -71,11 +71,6 @@ export const EditUserPageContent = () => {
       isError = true;
     }
 
-    if (!avatarUrlValue.trim()) {
-      setAvatarUrlError("Image link is required");
-      isError = true;
-    }
-
     const imageIsValid = await imageExists(avatarUrlValue);
 
     if (!!avatarUrlValue.trim()) {

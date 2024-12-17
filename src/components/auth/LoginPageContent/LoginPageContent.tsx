@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
 import { useAuthStore } from "../../../store/useAuthStore";
+import { validateEmail } from "../../../utils/validateEmail";
 
 export default function LoginPageContent() {
   const navigate = useNavigate();
@@ -28,10 +29,13 @@ export default function LoginPageContent() {
   const [passwordError, setPasswordError] = useState("");
 
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let isError = false;
+
+    setIsLoading(true);
 
     setError("");
     setEmailError("");
@@ -39,6 +43,11 @@ export default function LoginPageContent() {
 
     if (!emailValue) {
       setEmailError("Email is required");
+      isError = true;
+    }
+
+    if (!validateEmail(emailValue)) {
+      setEmailError("Email is not valid");
       isError = true;
     }
 
@@ -68,6 +77,8 @@ export default function LoginPageContent() {
       const errorMessage = (error as any).response.data.message;
 
       setError(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -92,7 +103,7 @@ export default function LoginPageContent() {
         />
 
         <div className={styles.buttonContainer}>
-          <Button title="Login" type="submit" />
+          <Button title="Login" type="submit" isLoading={isLoading} />
           <Button title="Register" to="/register" variant="outline" />
         </div>
 

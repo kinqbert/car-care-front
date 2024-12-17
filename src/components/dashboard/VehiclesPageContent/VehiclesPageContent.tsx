@@ -4,6 +4,7 @@ import { getAllCars } from "../../../api/cars";
 import styles from "./styles.module.scss";
 import { useCarsStore } from "../../../store/useCarsStore";
 import { CarSellItem } from "../../common/CarSellItem";
+import { Button } from "../../common/Button";
 
 export const VehiclesPageContent = () => {
   const currentCars = useCarsStore((state) => state.allCars);
@@ -19,7 +20,10 @@ export const VehiclesPageContent = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Vehicles for sale</h1>
+      <header className={styles.header}>
+        <h1 className={styles.headerText}>Vehicles for sale</h1>
+        {/* <Button title="Add car" to="/add-vehicle" /> */}
+      </header>
       <ul className={styles.carsList}>
         {currentCars.map((car) => (
           <CarSellItem key={car._id} car={car} />

@@ -13,7 +13,7 @@ import { AddVehiclePage } from "./pages/AddVehiclePage";
 import "./App.scss";
 import { EditUserPage } from "./pages/EditUserPage";
 import { VehiclePage } from "./pages/VehiclePage";
-import { AddRepairPage } from "./pages/AddRepairPage";
+import { AddDamagePage } from "./pages/AddDamagePage";
 import { TransactionsPage } from "./pages/TransactionsPage";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           <Route path="/users" element={<UsersPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
           <Route path="/add-vehicle" element={<AddVehiclePage />} />
-          <Route path="/add-repair" element={<AddRepairPage />} />
+          <Route path="/add-damage" element={<AddDamagePage />} />
           <Route path="/edit-user" element={<EditUserPage />} />
           <Route path="/vehicle/:vehicleId" element={<VehiclePage />} />
         </Route>

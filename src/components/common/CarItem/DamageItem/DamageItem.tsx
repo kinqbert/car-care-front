@@ -1,25 +1,25 @@
 import { ExclamationIcon, TickIcon } from "../../../../assets/misc-icons";
-import { RepairSeverity } from "../../../../enums/RepairSeverity";
-import { Repair } from "../../../../types/Repair";
+import { DamageSeverity } from "../../../../enums/DamageSeverity";
+import { Damage } from "../../../../types/Damage";
 
 import styles from "./styles.module.scss";
 
 interface Props {
-  repair?: Repair;
+  damage?: Damage;
   isNeutral?: boolean;
   iconText?: string;
   text?: string;
   showFullDescription?: boolean;
 }
 
-export const RepairItem = ({
-  repair,
+export const DamageItem = ({
+  damage,
   isNeutral,
   iconText,
   text,
   showFullDescription,
 }: Props) => {
-  if (!repair && !isNeutral) {
+  if (!damage && !isNeutral) {
     return null;
   }
 
@@ -43,10 +43,10 @@ export const RepairItem = ({
   const carInfoItemStyles = [styles.carInfoItem];
   const iconWrapperStyles = [styles.iconWrapper];
 
-  if (repair?.severity === RepairSeverity.HIGH) {
+  if (damage?.severity === DamageSeverity.HIGH) {
     carInfoItemStyles.push(styles.highSeverityCarInfo);
     iconWrapperStyles.push(styles.highSeverityIconWrapper);
-  } else if (repair?.severity === RepairSeverity.MEDIUM) {
+  } else if (damage?.severity === DamageSeverity.MEDIUM) {
     carInfoItemStyles.push(styles.mediumSeverityCarInfo);
     iconWrapperStyles.push(styles.mediumSeverityIconWrapper);
   }
@@ -61,10 +61,10 @@ export const RepairItem = ({
             <img className={styles.icon} src={ExclamationIcon} alt="icon" />
           )}
         </div>
-        <span className={styles.text}>{text || repair?.shortDescription}</span>
+        <span className={styles.text}>{text || damage?.shortDescription}</span>
       </div>
       {showFullDescription && (
-        <p className={styles.repairDescription}>{repair?.description || ""}</p>
+        <p className={styles.damageDescription}>{damage?.description || ""}</p>
       )}
     </div>
   );

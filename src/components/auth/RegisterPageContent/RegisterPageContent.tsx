@@ -9,6 +9,7 @@ import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
 import { imageExists } from "../../../utils/imageExists";
 import { useAuthStore } from "../../../store/useAuthStore";
+import { validateEmail } from "../../../utils/validateEmail";
 
 export const RegisterPageContent = () => {
   const navigate = useNavigate();
@@ -40,6 +41,8 @@ export const RegisterPageContent = () => {
   const [avatarUrlValue, setAvatarUrlValue] = useState("");
   const [avatarUrlError, setAvatarUrlError] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onFirstPhaseSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -49,8 +52,15 @@ export const RegisterPageContent = () => {
     setError("");
     setEmailError("");
 
+    setIsLoading(true);
+
     if (!emailValue.trim()) {
       setEmailError("Email is required");
+      isError = true;
+    }
+
+    if (!validateEmail(emailValue)) {
+      setEmailError("Email is not valid");
       isError = true;
     }
 
@@ -76,6 +86,9 @@ export const RegisterPageContent = () => {
       })
       .catch(() => {
         setError("Email already in use");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -146,6 +159,9 @@ export const RegisterPageContent = () => {
       })
       .catch(() => {
         setError("Registration failed. Please try again.");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -186,7 +202,7 @@ export const RegisterPageContent = () => {
           />
 
           <div className={styles.buttonContainer}>
-            <Button type="submit" title="Register" />
+            <Button type="submit" title="Register" isLoading={isLoading} />
             <Button title="Login" to="/login" variant="outline" />
           </div>
         </form>
@@ -199,6 +215,7 @@ export const RegisterPageContent = () => {
               value={emailValue}
               onChange={setEmailValue}
               error={emailError}
+              type="email"
             />
             <Input
               label="Password"
@@ -210,7 +227,7 @@ export const RegisterPageContent = () => {
             />
 
             <div className={styles.buttonContainer}>
-              <Button type="submit" title="Continue" />
+              <Button type="submit" title="Continue" isLoading={isLoading} />
               <Button title="Login" to="/login" variant="outline" />
             </div>
             {error && (

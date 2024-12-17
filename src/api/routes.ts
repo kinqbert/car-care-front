@@ -12,6 +12,7 @@ export const API_ROUTES = {
     CANCEL_SELL: (id: string) => `/api/cars/${id || ""}/cancel_sell`,
     REPAIR: (id: string) => `/api/cars/${id || ""}/repair`,
     CREATE: "/api/cars/create",
+    DELETE: (id: string) => `/api/cars/${id || ""}/delete`,
   },
   USER: {
     GET_USER: "/api/user",
@@ -19,8 +20,8 @@ export const API_ROUTES = {
     CHECK_EMAIL: "/api/check_email",
     UPDATE: "/api/user/update",
   },
-  REPAIRS: {
-    CREATE: "/api/repairs/create",
+  DAMAGE: {
+    CREATE: "/api/damage/create",
   },
   TRANSACTIONS: {
     GET_ALL_TRASACTIONS: "/api/transactions",

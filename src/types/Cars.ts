@@ -1,4 +1,4 @@
-import { Repair } from "./Repair";
+import { Damage } from "./Damage";
 import { User } from "./User";
 
 export interface Car {
@@ -22,13 +22,13 @@ export interface CarWithOwnerDetails extends Car {
   owner: User;
 }
 
-export interface CarWithRepairs extends Car {
-  repairs: Repair[];
+export interface CarWithDamages extends Car {
+  damages: Damage[];
 }
 
-export interface CarWithOwnerDetailsAndRepairs extends Car {
+export interface CarWithOwnerDetailsAndDamagess extends Car {
   owner: User;
-  repairs: Repair[];
+  damages: Damage[];
 }
 
 export interface CarMake {
@@ -37,12 +37,13 @@ export interface CarMake {
 }
 
 export interface CarsState {
-  userCars: CarWithRepairs[];
+  userCars: CarWithDamages[];
   allCars: CarWithOwnerDetails[];
-  setUserCars: (data: CarWithRepairs[]) => void;
+  setUserCars: (data: CarWithDamages[]) => void;
+  setUserCar: (id: string, data: CarWithDamages) => void;
+  addUserCar: (data: CarWithDamages) => void;
+  removeUserCar: (id: string) => void;
   setAllCars: (data: CarWithOwnerDetails[]) => void;
-  setUserCar: (id: string, data: CarWithRepairs) => void;
-  addUserCar: (data: CarWithRepairs) => void;
   removeCar: (id: string) => void;
 }
 

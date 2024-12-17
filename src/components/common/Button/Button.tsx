@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
+import { BeatLoader } from "react-spinners";
 
 interface Props {
   title: string;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
-  variant?: "filled" | "outline";
+  variant?: "filled" | "outline" | "error";
   to?: string;
+  isLoading?: boolean;
 }
 
 export const Button = ({
@@ -15,10 +17,16 @@ export const Button = ({
   onClick,
   variant = "filled",
   to,
+  isLoading = false,
 }: Props) => {
+  let spinnerColor = "#fff";
+
   const getButtonStyle = () => {
     if (variant === "filled") {
+      spinnerColor = "#1c1c1c";
       return [styles.button, styles.button__filled].join(" ");
+    } else if (variant === "error") {
+      return [styles.button, styles.button__error].join(" ");
     } else {
       return [styles.button, styles.button__outlined].join(" ");
     }
@@ -28,7 +36,7 @@ export const Button = ({
     return (
       <Link to={to}>
         <button className={getButtonStyle()} type={type}>
-          {title}
+          {isLoading ? <BeatLoader color={spinnerColor} /> : title}
         </button>
       </Link>
     );
@@ -36,7 +44,7 @@ export const Button = ({
 
   return (
     <button onClick={onClick} className={getButtonStyle()} type={type}>
-      {title}
+      {isLoading ? <BeatLoader size={5} color={spinnerColor} /> : title}
     </button>
   );
 };

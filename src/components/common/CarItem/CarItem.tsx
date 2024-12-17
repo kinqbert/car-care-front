@@ -8,24 +8,24 @@ import {
   WeightIcon,
 } from "../../../assets/car-item-icons";
 import { useCarsStore } from "../../../store/useCarsStore";
-import { CarWithRepairs } from "../../../types/Cars";
+import { CarWithDamages } from "../../../types/Cars";
 import { Button } from "../Button";
 import { CarInfoItem } from "./CarInfoItem";
-import { RepairItem } from "./RepairItem";
+import { DamageItem } from "./DamageItem";
 
 import styles from "./styles.module.scss";
 
 interface Props {
-  car: CarWithRepairs;
-  showRepairs?: boolean;
+  car: CarWithDamages;
+  showDamages?: boolean;
 }
 
-export const CarItem = ({ car, showRepairs }: Props) => {
+export const CarItem = ({ car, showDamages }: Props) => {
   const setUserCar = useCarsStore((state) => state.setUserCar);
 
   const ActionButton = () => {
-    if (showRepairs) {
-      if (car.repairs.length === 0) {
+    if (showDamages) {
+      if (car.damages.length === 0) {
         return null;
       }
 
@@ -61,40 +61,40 @@ export const CarItem = ({ car, showRepairs }: Props) => {
   };
 
   const CarItemLeftContent = () => {
-    if (showRepairs) {
-      const repairsCount = car.repairs.length;
+    if (showDamages) {
+      const damagessCount = car.damages.length;
 
-      if (repairsCount === 0) {
+      if (damagessCount === 0) {
         return (
-          <div className={styles.repairItems}>
-            <RepairItem isNeutral={true} />
+          <div className={styles.damageItems}>
+            <DamageItem isNeutral={true} />
           </div>
         );
       }
 
-      if (repairsCount <= 3) {
+      if (damagessCount <= 3) {
         return (
-          <div className={styles.repairItems}>
-            {car.repairs.map((repair) => (
-              <RepairItem key={repair._id} repair={repair} />
+          <div className={styles.damageItems}>
+            {car.damages.map((damage) => (
+              <DamageItem key={damage._id} damage={damage} />
             ))}
           </div>
         );
       }
 
-      const repairsToShow = car.repairs.slice(0, 2);
-      const repairsCountIconText = `+${repairsCount - 2}`;
-      const repairsCountText = "Other issues";
+      const damagesToShow = car.damages.slice(0, 2);
+      const damagesCountIconText = `+${damagessCount - 2}`;
+      const damagesCountText = "Other issues";
 
       return (
-        <div className={styles.repairItems}>
-          {repairsToShow.map((repair) => (
-            <RepairItem key={repair._id} repair={repair} />
+        <div className={styles.damageItems}>
+          {damagesToShow.map((damage) => (
+            <DamageItem key={damage._id} damage={damage} />
           ))}
-          <RepairItem
+          <DamageItem
             isNeutral={true}
-            iconText={repairsCountIconText}
-            text={repairsCountText}
+            iconText={damagesCountIconText}
+            text={damagesCountText}
           />
         </div>
       );

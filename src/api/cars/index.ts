@@ -18,3 +18,5 @@ export const repairCar = async (id: string) =>
   (await API.patch(API_ROUTES.CARS.REPAIR(id))).data;
 export const createCar = async (data: CarsCreateData) =>
   (await API.post(API_ROUTES.CARS.CREATE, data)).data;
+export const deleteCar = async (id: string) =>
+  (await API.delete(API_ROUTES.CARS.DELETE(id))).data;

@@ -24,11 +24,11 @@ export const RepairsPageContent = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.headerText}>Garage of {getUserFullName()}</h1>
-        <Button title="Add repair" to="/add-repair" />
+        <Button title="Add repair" to="/add-damage" />
       </header>
       <ul className={styles.carsList}>
         {currentCars.map((car) => (
-          <CarItem key={car._id} car={car} showRepairs={true} />
+          <CarItem key={car._id} car={car} showDamages={true} />
         ))}
       </ul>
       {currentCars.length === 0 && (
