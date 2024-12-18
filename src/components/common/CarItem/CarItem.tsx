@@ -1,4 +1,9 @@
-import { cancelSellCar, repairCar, sellCar } from "../../../api/cars";
+import {
+  cancelSellCar,
+  getCarById,
+  repairCar,
+  sellCar,
+} from "../../../api/cars";
 import {
   CalendarIcon,
   DoubleCircleIcon,
@@ -30,7 +35,9 @@ export const CarItem = ({ car, showDamages }: Props) => {
       }
 
       const handleRepair = async () => {
-        const updatedCar = await repairCar(car._id);
+        await repairCar(car._id);
+
+        const updatedCar = await getCarById(car._id);
 
         setUserCar(car._id, updatedCar);
       };

@@ -10,7 +10,7 @@ export const HomePageContent = () => {
     if (isAuth) {
       return "/garage";
     }
-    return "/register";
+    return "/login";
   };
 
   return (

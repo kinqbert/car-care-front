@@ -57,6 +57,8 @@ export default function LoginPageContent() {
     }
 
     if (isError) {
+      setIsLoading(false);
+
       return;
     }
 

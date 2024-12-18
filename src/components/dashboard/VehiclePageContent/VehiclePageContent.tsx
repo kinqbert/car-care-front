@@ -2,7 +2,13 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { CarWithDetails } from "../../../types/Cars";
-import { deleteCar, getCarById, repairCar } from "../../../api/cars";
+import {
+  cancelSellCar,
+  deleteCar,
+  getCarById,
+  repairCar,
+  sellCar,
+} from "../../../api/cars";
 
 import styles from "./styles.module.scss";
 import { DamageItem } from "../../common/CarItem/DamageItem";
@@ -56,12 +62,29 @@ export const VehiclePageContent = () => {
     }
 
     try {
-      const updatedCar = await repairCar(currentVehicle._id);
+      await repairCar(currentVehicle._id);
+
+      const updatedCar = await getCarById(currentVehicle._id);
 
       setCurrentVehicle(updatedCar);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleSell = async () => {
+    if (!currentVehicle) {
+      return;
+    }
+    if (currentVehicle.isPurchaseAvailable) {
+      await cancelSellCar(currentVehicle._id);
+    } else {
+      await sellCar(currentVehicle._id);
+    }
+
+    const updatedCar = await getCarById(currentVehicle._id);
+
+    setCurrentVehicle(updatedCar);
   };
 
   useEffect(() => {
@@ -78,6 +101,13 @@ export const VehiclePageContent = () => {
   if (!currentVehicle) {
     return <div>Loading...</div>;
   }
+
+  const sellButtonVariant = currentVehicle.isPurchaseAvailable
+    ? "outline"
+    : "filled";
+  const sellButtonText = currentVehicle.isPurchaseAvailable
+    ? "Cancel sell"
+    : "Sell";
 
   return (
     <div className={styles.container}>
@@ -188,7 +218,7 @@ export const VehiclePageContent = () => {
           </div>
           <div className={styles.carOwnershipsBlock}>
             <h2>Ownership history</h2>
-            {currentVehicle.owners.length === 0 && (
+            {currentVehicle.owners?.length === 0 && (
               <span className={styles.noDamagesMessage}>
                 You are registered as the only owner of this car.
               </span>
@@ -221,6 +251,11 @@ export const VehiclePageContent = () => {
                     variant="outline"
                   />
                 )}
+                <Button
+                  title={sellButtonText}
+                  onClick={handleSell}
+                  variant={sellButtonVariant}
+                />
               </div>
             </div>
           )}

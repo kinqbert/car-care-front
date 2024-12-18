@@ -35,7 +35,7 @@ export const Button = ({
   if (to) {
     return (
       <Link to={to}>
-        <button className={getButtonStyle()} type={type}>
+        <button className={getButtonStyle()} type={type} disabled={isLoading}>
           {isLoading ? <BeatLoader color={spinnerColor} /> : title}
         </button>
       </Link>
@@ -43,7 +43,12 @@ export const Button = ({
   }
 
   return (
-    <button onClick={onClick} className={getButtonStyle()} type={type}>
+    <button
+      onClick={onClick}
+      className={getButtonStyle()}
+      type={type}
+      disabled={isLoading}
+    >
       {isLoading ? <BeatLoader size={5} color={spinnerColor} /> : title}
     </button>
   );

@@ -49,11 +49,11 @@ export const VehiclesPageContent = () => {
     let fits = true;
 
     if (vehicleMakeFilter !== "All") {
-      fits = car.make === vehicleMakeFilter;
+      fits = fits && car.make === vehicleMakeFilter;
     }
 
     if (ownerFilter !== "All") {
-      fits = car.ownerId.toString() === ownerFilter;
+      fits = fits && car.ownerId.toString() === ownerFilter;
     }
 
     return fits;

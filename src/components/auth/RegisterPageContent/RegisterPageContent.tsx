@@ -77,6 +77,7 @@ export const RegisterPageContent = () => {
     }
 
     if (isError) {
+      setIsLoading(false);
       return;
     }
 
@@ -141,6 +142,7 @@ export const RegisterPageContent = () => {
     }
 
     if (isError) {
+      setIsLoading(false);
       return;
     }
 
