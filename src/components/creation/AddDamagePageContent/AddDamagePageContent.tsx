@@ -99,7 +99,7 @@ export const AddDamagePageContent = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Register new vehicle</h1>
+      <h1 className={styles.header}>Register new damage</h1>
       <form
         className={styles.form}
         onSubmit={handleSubmit}
@@ -118,7 +118,7 @@ export const AddDamagePageContent = () => {
           error={shortDescriptionError}
         />
         <Input
-          label="Short description"
+          label="Description"
           value={description}
           onChange={setDescription}
           error={descriptionError}

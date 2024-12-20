@@ -24,7 +24,7 @@ export const RepairsPageContent = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.headerText}>Garage of {getUserFullName()}</h1>
-        <Button title="Add repair" to="/add-damage" />
+        <Button title="Add damage" to="/add-damage" />
       </header>
       <ul className={styles.carsList}>
         {currentCars.map((car) => (
