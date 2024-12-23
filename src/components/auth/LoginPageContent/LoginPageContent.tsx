@@ -23,6 +23,8 @@ export default function LoginPageContent() {
     }
   }, []);
 
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
   const [emailValue, setEmailValue] = useState("");
   const [emailError, setEmailError] = useState("");
 
@@ -85,6 +87,7 @@ export default function LoginPageContent() {
 
       setError(errorMessage);
     } finally {
+      setIsFirstRender(false);
       setIsLoading(false);
     }
   };
@@ -119,7 +122,7 @@ export default function LoginPageContent() {
             <p>{error}</p>
           </div>
         )}
-        {isRegisterSuccess && (
+        {isRegisterSuccess && isFirstRender && (
           <div className={styles.successContainer}>
             <p>Successfully registered!</p>
           </div>
