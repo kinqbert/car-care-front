@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { login } from "../../../api/auth";
 import { getCurrentUser } from "../../../api/user";
 import { useUserStore } from "../../../store/useUserStore";
@@ -12,6 +12,7 @@ import { validateEmail } from "../../../utils/validateEmail";
 
 export default function LoginPageContent() {
   const navigate = useNavigate();
+
   const setUser = useUserStore((state) => state.setUser);
   const setIsAuth = useAuthStore((state) => state.setIsAuth);
   const isAuth = useAuthStore((state) => state.isAuth);
@@ -30,6 +31,10 @@ export default function LoginPageContent() {
 
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const isRegisterSuccess = queryParams.get("success") === "true";
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -112,6 +117,11 @@ export default function LoginPageContent() {
         {error && (
           <div className={styles.errorContainer}>
             <p>{error}</p>
+          </div>
+        )}
+        {isRegisterSuccess && (
+          <div className={styles.successContainer}>
+            <p>Successfully registered!</p>
           </div>
         )}
       </form>

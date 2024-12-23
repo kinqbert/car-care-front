@@ -38,3 +38,16 @@
 
   background-color: $red-error;
 }
+
+.successContainer {
+  width: 100%;
+  padding: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 5px;
+
+  background-color: $green-success;
+}

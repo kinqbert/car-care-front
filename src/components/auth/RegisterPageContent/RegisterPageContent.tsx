@@ -157,7 +157,7 @@ export const RegisterPageContent = () => {
 
     register(registerData)
       .then(() => {
-        navigate("/login");
+        navigate("/login?success=true");
       })
       .catch(() => {
         setError("Registration failed. Please try again.");
